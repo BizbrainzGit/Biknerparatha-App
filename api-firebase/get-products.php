@@ -206,7 +206,7 @@ if (isset($_POST['get_all_products']) && $_POST['get_all_products'] == 1) {
 
 
     foreach ($res as $row) {
-        $sql = "SELECT *,(SELECT short_code FROM unit u WHERE u.id=pv.measurement_unit_id) as measurement_unit_name,(SELECT short_code FROM unit u WHERE u.id=pv.stock_unit_id) as stock_unit_name FROM product_variant pv WHERE pv.product_id=" . $row['id'] . " and pv.stock >=1 ORDER BY `pv`.`serve_for` ASC";
+        $sql = "SELECT *,(SELECT short_code FROM unit u WHERE u.id=pv.measurement_unit_id) as measurement_unit_name,(SELECT short_code FROM unit u WHERE u.id=pv.stock_unit_id) as stock_unit_name FROM product_variant pv WHERE pv.product_id=" . $row['id'] . " ORDER BY `pv`.`serve_for` ASC";
         $db->sql($sql);
         $variants = $db->getResult();
         if (empty($variants)) {
