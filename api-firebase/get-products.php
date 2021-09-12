@@ -206,7 +206,7 @@ if (isset($_POST['get_all_products']) && $_POST['get_all_products'] == 1) {
 
 
     foreach ($res as $row) {
-        $sql = "SELECT *,(SELECT short_code FROM unit u WHERE u.id=pv.measurement_unit_id) as measurement_unit_name,(SELECT short_code FROM unit u WHERE u.id=pv.stock_unit_id) as stock_unit_name FROM product_variant pv WHERE pv.product_id=" . $row['id'] . " ORDER BY `pv`.`serve_for` ASC";
+        $sql = "SELECT *,(SELECT short_code FROM unit u WHERE u.id=pv.measurement_unit_id) as measurement_unit_name,(SELECT short_code FROM unit u WHERE u.id=pv.stock_unit_id) as stock_unit_name FROM product_variant pv WHERE pv.product_id=" . $row['id'] . " and pv.stock >=1 ORDER BY `pv`.`serve_for` ASC";
         $db->sql($sql);
         $variants = $db->getResult();
         if (empty($variants)) {
@@ -289,11 +289,12 @@ if (isset($_POST['get_all_products']) && $_POST['get_all_products'] == 1) {
         $product[$i] = $row;
 
         for ($k = 0; $k < count($variants); $k++) {
-            if ($variants[$k]['stock'] <= 0) {
+           if ($variants[$k]['stock'] <= 0) {
                 $variants[$k]['serve_for'] = 'Sold Out';
-            } else {
+            } 
+            else {
                 $variants[$k]['serve_for'] = $variants[$k]['serve_for'];
-            }
+         }
 
 
             if (!empty($user_id)) {
@@ -355,7 +356,7 @@ if (isset($_POST['get_products_offline']) && $_POST['get_products_offline'] == 1
     $i = 0;
 
     foreach ($res as $row) {
-        $sql = "SELECT *,(SELECT short_code FROM unit u WHERE u.id=pv.measurement_unit_id) as measurement_unit_name,(SELECT short_code FROM unit u WHERE u.id=pv.stock_unit_id) as stock_unit_name FROM product_variant pv WHERE pv.product_id=" . $row['id'] . " ORDER BY serve_for ASC";
+        $sql = "SELECT *,(SELECT short_code FROM unit u WHERE u.id=pv.measurement_unit_id) as measurement_unit_name,(SELECT short_code FROM unit u WHERE u.id=pv.stock_unit_id) as stock_unit_name FROM product_variant pv WHERE pv.product_id=" . $row['id'] . " and pv.stock >=1 ORDER BY serve_for ASC";
         $db->sql($sql);
         $variants = $db->getResult();
         if (empty($variants)) {
@@ -391,7 +392,7 @@ if (isset($_POST['get_products_offline']) && $_POST['get_products_offline'] == 1
         for ($k = 0; $k < count($variants); $k++) {
             if ($variants[$k]['stock'] <= 0) {
                 $variants[$k]['serve_for'] = 'Sold Out';
-            } else {
+           } else {
                 $variants[$k]['serve_for'] = 'Available';
             }
             $variants[$k]['cart_count'] = "0";
