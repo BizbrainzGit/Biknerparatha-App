@@ -12,6 +12,6 @@ Options -Indexes
 Header always edit Set-Cookie (.*) "$1; HTTPOnly"
 Header always edit Set-Cookie (.*) "$1; Secure"
 
-redirectMatch 301 /refer https://play.google.com/store/apps/details?id=your.athidi_multivendor.app
+redirectMatch 301 /refer https://play.google.com/store/apps/details?id=your.Biknerparatha-App.app
 
-redirectMatch 301 /itemdetail https://play.google.com/store/apps/details?id=your.athidi_multivendor.app
+redirectMatch 301 /itemdetail https://play.google.com/store/apps/details?id=your.Biknerparatha-App.app
