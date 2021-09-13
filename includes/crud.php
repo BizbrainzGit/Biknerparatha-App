@@ -7,7 +7,7 @@
 
 //define('DOMAIN_URL', 'http://52.66.249.224/Athidi/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
 
-define('DOMAIN_URL', '/Biknerparatha-App/'); 
+define('DOMAIN_URL', 'http://52.66.249.224/Biknerparatha-App/'); 
 /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
 define('ALLOW_MODIFICATION', 1);
 
@@ -23,8 +23,8 @@ class Database
      */
 
     private $db_host = "localhost";  // Change as required
-    private $db_user = "root";  // Change as required
-    private $db_pass = "";
+    private $db_user = "AthidiDB";  // Change as required
+    private $db_pass = "User@123";
     private $db_name = "biknerparatha-app";    // Change as required
 
     /*
