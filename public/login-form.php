@@ -6,7 +6,6 @@ include_once('includes/custom-functions.php');
 $fn = new custom_functions;
 
 if (isset($_POST['btnLogin'])) {
-	echo "<script>alert('login clicked')</script>";
 
 	// get username and password
 	$username = $db->escapeString($fn->xss_clean($_POST['username']));
@@ -39,7 +38,6 @@ if (isset($_POST['btnLogin'])) {
 
 		// get data from user table
 		$sql_query = "SELECT * FROM admin WHERE username = '" . $username . "' AND password = '" . $password . "'";
-		var_dump($sql_query);
 		
 		$db->sql($sql_query);
 		/* store result */
