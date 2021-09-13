@@ -43,6 +43,8 @@ if (isset($_POST['btnLogin'])) {
 		/* store result */
 		$res = $db->getResult();
 		$num = $db->numRows($res);
+		var_dump($num);
+		exit();
 		// Close statement object
 		if ($num == 1) {
 			$_SESSION['id'] = $res[0]['id'];
