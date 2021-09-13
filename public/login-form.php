@@ -6,6 +6,7 @@ include_once('includes/custom-functions.php');
 $fn = new custom_functions;
 
 if (isset($_POST['btnLogin'])) {
+	echo "<script>alert('login clicked')</script>";
 
 	// get username and password
 	$username = $db->escapeString($fn->xss_clean($_POST['username']));
