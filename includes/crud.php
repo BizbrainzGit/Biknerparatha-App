@@ -29,7 +29,7 @@ class Database
     private $db_pass = "User@123";
     private $db_name = "biknerparatha-app";    // Change as required
 
-     * Extra variables that are required by other function such as boolean con variable
+    /* Extra variables that are required by other function such as boolean con variable
      */
     private $con = false; // Check to see if the connection is active
     private $myconn = ""; // This will be our mysqli object
