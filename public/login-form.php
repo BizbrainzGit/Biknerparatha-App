@@ -38,7 +38,7 @@ if (isset($_POST['btnLogin'])) {
 
 		// get data from user table
 		$sql_query = "SELECT * FROM admin WHERE username = '" . $username . "' AND password = '" . $password . "'";
-		
+		var_dump($sql_query);
 		$db->sql($sql_query);
 		/* store result */
 		$res = $db->getResult();
@@ -49,7 +49,7 @@ if (isset($_POST['btnLogin'])) {
 			$_SESSION['role'] = $res[0]['role'];
 			$_SESSION['user'] = $username;
 			$_SESSION['timeout'] = $currentTime + $expired;
-			header("location: home.php");
+			//header("location: home.php");
 		} else {
 			$error['failed'] = "<span class='label label-danger'>Invalid Username or Password!</span>";
 		}
