@@ -5,14 +5,16 @@
  * @Package Database
  */
 
-//define('DOMAIN_URL', 'http://52.66.249.224/Athidi/'); /* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
+
+
 
 define('DOMAIN_URL', 'http://52.66.249.224/Biknerparatha-App/'); 
-/* chnage to your domain here - don't forget to add forward slash at the end of the URL like this "/" */
+
+
 define('ALLOW_MODIFICATION', 1);
 
 define('JWT_SECRET_KEY','eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTYyNTI1MjA3NSwiaWF0IjoxNjI1MjUyMDc1fQ.kPlA7_FmdeA2oBKBTBiwHqub39N9keXvr3xIHMlNYZA');
-
+ 
 class Database
 {
     /* 
@@ -27,7 +29,6 @@ class Database
     private $db_pass = "User@123";
     private $db_name = "biknerparatha-app";    // Change as required
 
-    /*
      * Extra variables that are required by other function such as boolean con variable
      */
     private $con = false; // Check to see if the connection is active
