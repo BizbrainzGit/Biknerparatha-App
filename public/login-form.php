@@ -39,6 +39,7 @@ if (isset($_POST['btnLogin'])) {
 
 		// get data from user table
 		$sql_query = "SELECT * FROM admin WHERE username = '" . $username . "' AND password = '" . $password . "'";
+		var_dump($sql_query);
 		
 		$db->sql($sql_query);
 		/* store result */
