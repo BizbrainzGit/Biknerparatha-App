@@ -9,8 +9,6 @@ include_once('includes/functions.php');
 $fn = new custom_functions;
 $permissions = $fn->get_permissions($_SESSION['id']);
 $config = $fn->get_configurations();
-//print_r($config);
-//die();
 if (isset($config['system_timezone']) && isset($config['system_timezone_gmt'])) {
     date_default_timezone_set($config['system_timezone']);
     $db->sql("SET `time_zone` = '" . $config['system_timezone_gmt'] . "'");
@@ -22,7 +20,6 @@ if (isset($config['system_timezone']) && isset($config['system_timezone_gmt'])) 
 $settings['app_name'] = $config['app_name'];
 $words = explode(" ", $settings['app_name']);
 $acronym = "";
-
 foreach ($words as $w) {
     $acronym .= $w[0];
 }
@@ -77,6 +74,7 @@ $res_logo = $db->getResult();
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css" integrity="sha256-2kJr1Z0C1y5z0jnhr/mCu46J3R6Uud+qCQHA39i1eYo=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js" integrity="sha256-CgrKEb54KXipsoTitWV+7z/CVYrQ0ZagFB3JOvq2yjo=" crossorigin="anonymous"></script>
     <script>
@@ -90,8 +88,29 @@ $res_logo = $db->getResult();
                 minDate: new Date(currentYear, currentMonth, currentDate),
                 dateFormat: 'yy-mm-dd',
             });
-        });
-    </script>
+      
+     });
+
+    setTimeout("checkUpdate()",1000); //poll every second
+        function checkUpdate()
+        {
+            $.post("order-notification.php", function(data, status)
+            {
+               if (data.toString()=="true")
+               {
+                  playSound();
+               }
+            });
+        }
+
+        function playSound()
+        {
+            var audio = new Audio('http://www.rangde.org/static/bell-ring-01.mp3');
+            audio.play();
+        }
+        
+
+</script>
     <script language="javascript">
         function printpage() {
             window.print();
@@ -222,6 +241,16 @@ $res_logo = $db->getResult();
                     <a href="orders.php"> <!--orders.php-->
                         <i class="fa fa-shopping-cart"></i>
                         <span>Orders</span>
+                         <?php
+                         $now = date("Y-m-d h:i:sa");
+                        $query = "select * from orders";
+                        $db->sql($query);
+                        $result = $db->getResult();
+                        $count = $db->numRows($result);
+                        if ($count) { ?>
+                            <span class="label label-warning pull-right"><?php  echo $count; ?> <i class="fa fa-bell"></i></span>
+                        <?php   } ?>
+                       
                     </a>
                 </li>
                 <li class="treeview">
@@ -260,10 +289,14 @@ $res_logo = $db->getResult();
                     <ul class="treeview-menu">
                         <li><a href="add-product.php"><i class="fa fa-plus"></i> Add Product</a></li>
                         <li><a href="products.php"><i class="fa fa-sliders"></i> Manage Products</a></li>
+                        <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li> 
                       
                     </ul>
                 </li> 
-               
+            <!--    <li class="treeview">
+                    <a href="notification.php"> <i class="fa fa-share-square-o"></i><span>Send notification</span>
+                    </a>
+                </li> -->
             
                
               

@@ -1,5 +1,5 @@
 API URL -->> 
-	https://athidimultivendor.wrteam.in/api-firebase/
+	https://Biknerparatha-Appmultivendor.wrteam.in/api-firebase/
 
 ----------------------------------------------------------
 APIs list 

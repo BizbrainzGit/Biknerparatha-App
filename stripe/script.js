@@ -97,7 +97,7 @@ var orderComplete = function (clientSecret) {
         paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
         var cookie = [name, '=', JSON.stringify(paymentIntent), '&order_id=', order_id, '; domain=.', window.location.host.toString(), '; path=/;'].join("");
         document.cookie = cookie;
-        window.location = "https://newAthidi.wrteam.in/stripe/payment-process.php";
+        window.location = "https://newBiknerparatha-App.wrteam.in/stripe/payment-process.php";
         changeLoadingState(false);
     });
 };

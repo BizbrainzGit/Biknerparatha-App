@@ -6,9 +6,9 @@ function generate_token(){
 	$jwt = new JWT();
 	$payload = [
 		'iat' => time(), /* issued at time */
-		'iss' => 'Athidi',
+		'iss' => 'Biknerparatha-App',
 		'exp' => time() + (30*60), /* expires after 1 minute */
-		'sub' => 'Athidi Authentication'
+		'sub' => 'Biknerparatha-App Authentication'
 	];
 	$token = $jwt::encode($payload,JWT_SECRET_KEY);
 	return $token;
@@ -32,7 +32,7 @@ function verify_token(){
 		try{
 			// JWT::$leeway = 60;
 			$payload = $jwt->decode($token, JWT_SECRET_KEY, ['HS256']);
-			if(!isset($payload->iss) || $payload->iss != 'Athidi'){
+			if(!isset($payload->iss) || $payload->iss != 'Biknerparatha-App'){
 	            $response['error']=true;
 	            $response['message'] = 'Invalid Hash';
 	            print_r(json_encode($response));
