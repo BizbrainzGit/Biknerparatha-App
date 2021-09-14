@@ -6,9 +6,9 @@ function generate_token(){
 	$jwt = new JWT();
 	$payload = [
 		'iat' => time(), /* issued at time */
-		'iss' => 'Biknerparatha-App',
+		'iss' => 'Athidi',
 		'exp' => time() + (30*60), /* expires after 1 minute */
-		'sub' => 'Biknerparatha-App Authentication'
+		'sub' => 'Athidi Authentication'
 	];
 	$token = $jwt::encode($payload,JWT_SECRET_KEY);
 	return $token;
