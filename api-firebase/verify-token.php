@@ -32,7 +32,7 @@ function verify_token(){
 		try{
 			// JWT::$leeway = 60;
 			$payload = $jwt->decode($token, JWT_SECRET_KEY, ['HS256']);
-			if(!isset($payload->iss) || $payload->iss != 'Biknerparatha-App'){
+			if(!isset($payload->iss) || $payload->iss != 'Athidi'){
 	            $response['error']=true;
 	            $response['message'] = 'Invalid Hash';
 	            print_r(json_encode($response));
